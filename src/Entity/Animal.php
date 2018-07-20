@@ -13,6 +13,7 @@ class Animal
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     *
      */
     private $id;
 
@@ -20,6 +21,7 @@ class Animal
      * @var string
      *
      * @ORM\Column(type="string", length=50)
+     *
      */
     private $nome;
 
@@ -27,8 +29,24 @@ class Animal
      * @var date
      *
      * @ORM\Column(type="date")
+     *
      */
     private $data_nascimento;
+
+    /**
+     * @var object
+     *
+     * @ORM\ManyToMany(targetEntity="App\Entity\Cliente", mappedBy="animal")
+     *
+     */
+    private $cliente;
+
+    /**
+     * @var object
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\Raca", inversedBy="id")
+     */
+    private $raca;
 
     public function getId()
     {
@@ -68,6 +86,42 @@ class Animal
     public function setDataNascimento($data_nascimento)
     {
         $this->data_nascimento = $data_nascimento;
+        return $this;
+    }
+
+    /**
+     * @return object
+     */
+    public function getCliente()
+    {
+        return $this->cliente;
+    }
+
+    /**
+     * @param object $cliente
+     * @return Animal
+     */
+    public function setCliente($cliente)
+    {
+        $this->cliente = $cliente;
+        return $this;
+    }
+
+    /**
+     * @return object
+     */
+    public function getRaca()
+    {
+        return $this->raca;
+    }
+
+    /**
+     * @param object $raca
+     * @return Animal
+     */
+    public function setRaca($raca)
+    {
+        $this->raca = $raca;
         return $this;
     }
 }

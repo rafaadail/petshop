@@ -36,6 +36,19 @@ class Cliente
      */
     private $email;
 
+    /**
+     * @var object
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\Endereco", inversedBy="id")
+     */
+    private $endereco;
+
+    /**
+     * @var object
+     * @ORM\ManyToMany(targetEntity="App\Entity\Animal", inversedBy="cliente")
+     * @ORM\JoinTable(name="animal_cliente")
+     */
+    private $animal;
 
     public function getId()
     {
@@ -72,7 +85,7 @@ class Cliente
      * @param string $telefone
      * @return Cliente
      */
-    public function setTelefone(string $telefone)
+    public function setTelefone($telefone)
     {
         $this->telefone = $telefone;
         return $this;
@@ -90,9 +103,46 @@ class Cliente
      * @param string $email
      * @return Cliente
      */
-    public function setEmail(string $email)
+    public function setEmail($email)
     {
         $this->email = $email;
         return $this;
     }
+
+    /**
+     * @return object
+     */
+    public function getEndereco()
+    {
+        return $this->endereco;
+    }
+
+    /**
+     * @param object $endereco
+     * @return Cliente
+     */
+    public function setEndereco($endereco)
+    {
+        $this->endereco = $endereco;
+        return $this;
+    }
+
+    /**
+     * @return object
+     */
+    public function getAnimal()
+    {
+        return $this->animal;
+    }
+
+    /**
+     * @param object $animal
+     * @return Cliente
+     */
+    public function setAnimal($animal)
+    {
+        $this->animal = $animal;
+        return $this;
+    }
+
 }
