@@ -42,7 +42,7 @@ class Especie
      *
      * @return Especie
      */
-    public function setNome(string $nome)
+    public function setNome($nome)
     {
         $this->nome = $nome;
         return $this;

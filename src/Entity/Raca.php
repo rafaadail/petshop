@@ -17,8 +17,9 @@ class Raca
     private $id;
 
     /**
-     * @param string $nome
-     * @return Especie
+     * @var string
+     *
+     * @ORM\Column(type="string", length=50)
      */
     private $nome;
 
