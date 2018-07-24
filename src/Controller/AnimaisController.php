@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Animal;
+use App\Form\AnimalType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -37,6 +39,33 @@ class AnimaisController extends Controller
     {
         return [
             'animal' => $animal
+        ];
+    }
+
+    /**
+     * @Route("animal/cadastrar", name="cadastrar_animal")
+     * @Template("animais/create.html.twig")
+     * @param Request $request
+     * @return array
+     */
+    public function create(Request $request)
+    {
+        $animal = new Animal();
+        $form = $this->createForm( AnimalType::class, $animal );
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($animal);
+            $em->flush();
+
+            $this->addFlash('success', 'Animal foi salvo com sucesso');
+
+            return $this->redirectToRoute('listar_animais');
+        }
+
+        return [
+            'form' => $form->createView()
         ];
     }
 }

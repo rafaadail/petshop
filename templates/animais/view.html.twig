@@ -1,6 +1,5 @@
 {% extends 'base.html.twig' %}
 
-
 {% block title %} {{ animal.nome }}Visualizar Animal {% endblock %}
 
 {% block body %}
@@ -21,7 +20,7 @@
         </tr>
         <tr>
             <th>Data nasc.</th>
-            <td>{{ animal.dataNascimento|date }}</td>
+            <td>{{ animal.dataNascimento|date('d/m/Y') }}</td>
         </tr>
     </table>
 {% endblock %}
