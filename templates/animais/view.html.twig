@@ -22,6 +22,24 @@
             <th>Data nasc.</th>
             <td>{{ animal.dataNascimento|date('d/m/Y') }}</td>
         </tr>
+        <tr>
+            <th colspan="2">Proprietários</th>
+        </tr>
+        <tr>
+            <th></th>
+            <td>
+                <ul>
+                    {% for cliente in animal.cliente %}
+                        <li><a href="{{ path('visualizar_cliente', {'id': cliente.id}) }}">{{ cliente.nome }}</a></li>
+                    {% else %}
+                        <li>
+                            Esse animal não tem nenhum proprietário<br>
+                            Que adota-lo?
+                        </li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
     </table>
 {% endblock %}
 
