@@ -48,7 +48,7 @@ class ClienteType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-            ->add('Salvar', SubmitType::class, [
+            ->add('salvar', SubmitType::class, [
                 'label' => 'Salvar',
                 'attr'  => [
                     'class' => 'btn btn-success'
